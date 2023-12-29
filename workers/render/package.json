@@ -1,0 +1,14 @@
+{
+  "name": "render",
+  "type": "module",
+  "main": "./src/main.ts",
+  "exports": {
+    "./worker": "./src/worker.ts",
+    "./messages": "./src/messages.ts"
+  },
+  "dependencies": {
+    "@pixi/webworker": "^7.3.2",
+    "core": "workspace:*",
+    "pixi.js": "^7.3.2"
+  }
+}

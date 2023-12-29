@@ -1,0 +1,1 @@
+An internal package with modules with "core" types and functions for the graph visualization 2 system.

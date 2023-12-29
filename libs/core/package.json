@@ -1,0 +1,15 @@
+{
+  "name": "core",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "base": "workspace:*"
+  },
+  "devDependencies": {
+    "type-fest": "^4.9.0"
+  },
+  "exports": {
+    "./common": "./src/common.ts",
+    "./entity": "./src/entity.ts"
+  }
+}

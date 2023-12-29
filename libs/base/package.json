@@ -1,0 +1,11 @@
+{
+  "name": "base",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./entity": "./src/entity.ts"
+  },
+  "devDependencies": {
+    "type-fest": "^4.9.0"
+  }
+}
