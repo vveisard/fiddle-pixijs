@@ -3,7 +3,8 @@
   "type": "module",
   "private": true,
   "exports": {
-    "./entity": "./src/entity.ts"
+    "./entity": "./src/entity.ts",
+    "./event": "./src/event.ts"
   },
   "devDependencies": {
     "type-fest": "^4.9.0"

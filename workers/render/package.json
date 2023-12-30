@@ -7,7 +7,15 @@
     "./messages": "./src/messages.ts"
   },
   "dependencies": {
-    "@pixi/webworker": "^7.3.2",
+    "@pixi/app": "^7.3.2",
+    "@pixi/core": "^7.3.2",
+    "@pixi/display": "^7.3.2",
+    "@pixi/events": "^7.3.2",
+    "@pixi/extensions": "^7.3.2",
+    "@pixi/graphics": "^7.3.2",
+    "@pixi/interaction": "^6.5.10",
+    "@pixi/utils": "^7.3.2",
+    "@xmldom/xmldom": "^0.8.10",
     "core": "workspace:*",
     "pixi.js": "^7.3.2"
   }

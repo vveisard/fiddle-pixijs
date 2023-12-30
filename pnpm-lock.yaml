@@ -10,6 +10,9 @@ importers:
 
   apps/web:
     dependencies:
+      base:
+        specifier: workspace:*
+        version: link:../../libs/base
       render:
         specifier: workspace:*
         version: link:../../workers/render
@@ -48,9 +51,33 @@ importers:
 
   workers/render:
     dependencies:
-      '@pixi/webworker':
+      '@pixi/app':
         specifier: ^7.3.2
-        version: 7.3.2(@pixi/utils@7.3.2)
+        version: 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
+      '@pixi/core':
+        specifier: ^7.3.2
+        version: 7.3.2
+      '@pixi/display':
+        specifier: ^7.3.2
+        version: 7.3.2(@pixi/core@7.3.2)
+      '@pixi/events':
+        specifier: ^7.3.2
+        version: 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
+      '@pixi/extensions':
+        specifier: ^7.3.2
+        version: 7.3.2
+      '@pixi/graphics':
+        specifier: ^7.3.2
+        version: 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)
+      '@pixi/interaction':
+        specifier: ^6.5.10
+        version: 6.5.10(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/math@6.5.10)(@pixi/ticker@6.5.10)(@pixi/utils@7.3.2)
+      '@pixi/utils':
+        specifier: ^7.3.2
+        version: 7.3.2
+      '@xmldom/xmldom':
+        specifier: ^0.8.10
+        version: 0.8.10
       core:
         specifier: workspace:*
         version: link:../../libs/core
@@ -673,6 +700,10 @@ packages:
       '@pixi/core': 7.3.2
     dev: false
 
+  /@pixi/constants@6.5.10:
+    resolution: {integrity: sha512-PUF2Y9YISRu5eVrVVHhHCWpc/KmxQTg3UH8rIUs8UI9dCK41/wsPd3pEahzf7H47v7x1HCohVZcFO3XQc1bUDw==}
+    dev: false
+
   /@pixi/constants@7.3.2:
     resolution: {integrity: sha512-Q8W3ncsFxmfgC5EtokpG92qJZabd+Dl+pbQAdHwiPY3v+8UNq77u4VN2qtl1Z04864hCcg7AStIYEDrzqTLF6Q==}
     dev: false
@@ -781,6 +812,26 @@ packages:
       '@pixi/sprite': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
     dev: false
 
+  /@pixi/interaction@6.5.10(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/math@6.5.10)(@pixi/ticker@6.5.10)(@pixi/utils@7.3.2):
+    resolution: {integrity: sha512-v809pJmXA2B9dV/vdrDMUqJT+fBB/ARZli2YRmI2dPbEbkaYr8FNmxCAJnwT8o+ymTx044Ie820hn9tVrtMtfA==}
+    peerDependencies:
+      '@pixi/core': 6.5.10
+      '@pixi/display': 6.5.10
+      '@pixi/math': 6.5.10
+      '@pixi/ticker': 6.5.10
+      '@pixi/utils': 6.5.10
+    dependencies:
+      '@pixi/core': 7.3.2
+      '@pixi/display': 7.3.2(@pixi/core@7.3.2)
+      '@pixi/math': 6.5.10
+      '@pixi/ticker': 6.5.10(@pixi/extensions@7.3.2)(@pixi/settings@6.5.10)
+      '@pixi/utils': 7.3.2
+    dev: false
+
+  /@pixi/math@6.5.10:
+    resolution: {integrity: sha512-fxeu7ykVbMGxGV2S3qRTupHToeo1hdWBm8ihyURn3BMqJZe2SkZEECPd5RyvIuuNUtjRnmhkZRnF3Jsz2S+L0g==}
+    dev: false
+
   /@pixi/math@7.3.2:
     resolution: {integrity: sha512-dutoZ0IVJ5ME7UtYNo2szu4D7qsgtJB7e3ylujBVu7BOP2e710BVtFwFSFV768N14h9H5roGnuzVoDiJac2u+w==}
     dev: false
@@ -863,6 +914,14 @@ packages:
 
   /@pixi/runner@7.3.2:
     resolution: {integrity: sha512-maKotoKJCQiQGBJwfM+iYdQKjrPN/Tn9+72F4WIf706zp/5vKoxW688Rsktg5BX4Mcn7ZkZvcJYTxj2Mv87lFA==}
+    dev: false
+
+  /@pixi/settings@6.5.10(@pixi/constants@6.5.10):
+    resolution: {integrity: sha512-ypAS5L7pQ2Qb88yQK72bXtc7sD8OrtLWNXdZ/gnw5kwSWCFaOSoqhKqJCXrR5DQtN98+RQefwbEAmMvqobhFyw==}
+    peerDependencies:
+      '@pixi/constants': 6.5.10
+    dependencies:
+      '@pixi/constants': 6.5.10
     dev: false
 
   /@pixi/settings@7.3.2:
@@ -955,6 +1014,16 @@ packages:
       '@pixi/sprite': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
     dev: false
 
+  /@pixi/ticker@6.5.10(@pixi/extensions@7.3.2)(@pixi/settings@6.5.10):
+    resolution: {integrity: sha512-UqX1XYtzqFSirmTOy8QAK4Ccg4KkIZztrBdRPKwFSOEiKAJoGDCSBmyQBo/9aYQKGObbNnrJ7Hxv3/ucg3/1GA==}
+    peerDependencies:
+      '@pixi/extensions': 6.5.10
+      '@pixi/settings': 6.5.10
+    dependencies:
+      '@pixi/extensions': 7.3.2
+      '@pixi/settings': 6.5.10(@pixi/constants@6.5.10)
+    dev: false
+
   /@pixi/ticker@7.3.2:
     resolution: {integrity: sha512-5kIPhBeXwDJohCzKzJJ6T7f1oAGbHAgeiwOjlTO+9lNXUX8ZPj0407V3syuF+64kFqJzIBCznBRpI+fmT4c9SA==}
     dependencies:
@@ -973,41 +1042,6 @@ packages:
       earcut: 2.2.4
       eventemitter3: 4.0.7
       url: 0.11.3
-    dev: false
-
-  /@pixi/webworker@7.3.2(@pixi/utils@7.3.2):
-    resolution: {integrity: sha512-CUBQOke1btkn7/ZHnNUfiUJLW3dVIbocX0p5jKuqnICZjA7mOSt7cGkRCsXs6vffARUo8AtLd+FHl+tSWkGreA==}
-    dependencies:
-      '@pixi/app': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
-      '@pixi/assets': 7.3.2(@pixi/core@7.3.2)(@pixi/utils@7.3.2)
-      '@pixi/compressed-textures': 7.3.2(@pixi/assets@7.3.2)(@pixi/core@7.3.2)
-      '@pixi/core': 7.3.2
-      '@pixi/display': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/extensions': 7.3.2
-      '@pixi/extract': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/filter-alpha': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/filter-blur': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/filter-color-matrix': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/filter-displacement': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/filter-fxaa': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/filter-noise': 7.3.2(@pixi/core@7.3.2)
-      '@pixi/graphics': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)
-      '@pixi/mesh': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
-      '@pixi/mesh-extras': 7.3.2(@pixi/core@7.3.2)(@pixi/mesh@7.3.2)
-      '@pixi/mixin-cache-as-bitmap': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)
-      '@pixi/mixin-get-child-by-name': 7.3.2(@pixi/display@7.3.2)
-      '@pixi/mixin-get-global-position': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
-      '@pixi/particle-container': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)
-      '@pixi/prepare': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/graphics@7.3.2)(@pixi/text@7.3.2)
-      '@pixi/sprite': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)
-      '@pixi/sprite-animated': 7.3.2(@pixi/core@7.3.2)(@pixi/sprite@7.3.2)
-      '@pixi/sprite-tiling': 7.3.2(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/sprite@7.3.2)
-      '@pixi/spritesheet': 7.3.2(@pixi/assets@7.3.2)(@pixi/core@7.3.2)
-      '@pixi/text': 7.3.2(@pixi/core@7.3.2)(@pixi/sprite@7.3.2)
-      '@pixi/text-bitmap': 7.3.2(@pixi/assets@7.3.2)(@pixi/core@7.3.2)(@pixi/display@7.3.2)(@pixi/mesh@7.3.2)(@pixi/text@7.3.2)
-      '@xmldom/xmldom': 0.8.10
-    transitivePeerDependencies:
-      - '@pixi/utils'
     dev: false
 
   /@solid-devtools/debugger@0.22.4(solid-js@1.8.7):

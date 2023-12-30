@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "solid-js": "^1.7.6",
-    "render": "workspace:*"
+    "render": "workspace:*",
+    "base": "workspace:*"
   }
 }

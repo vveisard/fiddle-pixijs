@@ -1,9 +1,10 @@
-// TODO from main to worker MessageData. enum, interfaces, and types
+/// <reference lib="DOM" />
 
 import { EntityWorldState } from "core/entity";
 
 enum MessageFromMainToRenderDataType {
   Setup,
+  ForwardInputEvent,
 }
 
 interface MessageFromMainToRenderData {
@@ -13,13 +14,23 @@ interface MessageFromMainToRenderData {
 interface SetupMessageFromMainToRenderData extends MessageFromMainToRenderData {
   readonly messageDataType: MessageFromMainToRenderDataType.Setup;
   readonly offscreenCanvas: OffscreenCanvas;
-  readonly initialEntityWorldState: EntityWorldState
+  readonly initialEntityWorldState: EntityWorldState;
 }
 
-type AnyMessageFromMainToRenderData = SetupMessageFromMainToRenderData;
+interface ForwardInputEventMessageFromMainToRenderData
+  extends MessageFromMainToRenderData {
+  readonly messageDataType: MessageFromMainToRenderDataType.ForwardInputEvent;
+  readonly eventType: 'click'; 
+  readonly eventInit: PointerEventInit;
+}
+
+type AnyMessageFromMainToRenderData =
+  | SetupMessageFromMainToRenderData
+  | ForwardInputEventMessageFromMainToRenderData;
 
 export {
   MessageFromMainToRenderDataType,
+  type ForwardInputEventMessageFromMainToRenderData,
   type SetupMessageFromMainToRenderData,
   type AnyMessageFromMainToRenderData,
 };
