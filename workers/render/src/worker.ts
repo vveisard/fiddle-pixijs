@@ -16,7 +16,20 @@ import {
 } from "./messages";
 //
 
-// TODO spoof globalThis as an event listeners
+// define "document" with no-ops for @pixi/events
+Object.defineProperty(globalThis, "document", {
+  value: {
+    addEventListener() {
+      // noop
+    },
+    removeEventListener() {
+      // noop
+    }
+  },
+  enumerable: true,
+  configurable: false,
+  writable: false,
+});
 
 declare var self: DedicatedWorkerGlobalScope;
 
@@ -55,10 +68,20 @@ function createRenderEngine(params: { canvas: OffscreenCanvas }): Application {
   const app = new Application({
     view: params.canvas,
     background: 0x1099bb,
+    eventMode: 'passive',
+    eventFeatures: {
+      move: true,
+      /** disables the global move events which can be very expensive in large scenes */
+      globalMove: false,
+      click: true,
+      wheel: true
+    }
   });
 
-  // // Install the EventSystem
-  // app.renderer.addSystem(EventSystem, "events");
+  app.stage.addEventListener('mousedown', function handleClick() {
+    console.log('Hello world!');
+  });
+  app.stage.eventMode = 'static'
 
   const container = new Container();
   container.x = app.screen.width / 2;
@@ -67,12 +90,12 @@ function createRenderEngine(params: { canvas: OffscreenCanvas }): Application {
 
   const circle = new Graphics();
   circle.beginFill(0xffffff);
-  circle.drawCircle(30, 30, 30);
+  circle.drawCircle(0, 0, 1000);
   circle.endFill();
-  container.addChild(circle);
+  circle.eventMode = 'static'
+  circle.on('mousedown', () => console.log(`container`, `on`, `mousedown`))
 
-  circle.on("click", (ev) => console.log("wow!"));
-  circle.eventMode = "static";
+  container.addChild(circle);
 
   return app;
 }
@@ -116,12 +139,14 @@ self.addEventListener("message", (ev) => {
     }
 
     case MessageFromMainToRenderDataType.ForwardInputEvent: {
-      console.log(messageData.eventInit);
-
       let event: Event;
       switch (messageData.eventType) {
         case "click": {
           event = new Event("click", messageData.eventInit);
+          break;
+        }
+        case "mousedown": {
+          event = new Event("mousedown", messageData.eventInit);
           break;
         }
         default: {
@@ -137,8 +162,7 @@ self.addEventListener("message", (ev) => {
     }
     default: {
       throw new Error(
-        `Not implemented! MessageFromMainToRenderType '${
-          (messageData as SetupMessageFromMainToRenderData).messageDataType
+        `Not implemented! MessageFromMainToRenderType '${(messageData as SetupMessageFromMainToRenderData).messageDataType
         }'`
       );
     }
@@ -148,4 +172,4 @@ self.addEventListener("message", (ev) => {
 // @region-end
 
 // treat this file as a module
-export {};
+export { };

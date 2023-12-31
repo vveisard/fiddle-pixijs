@@ -20,7 +20,7 @@ interface SetupMessageFromMainToRenderData extends MessageFromMainToRenderData {
 interface ForwardInputEventMessageFromMainToRenderData
   extends MessageFromMainToRenderData {
   readonly messageDataType: MessageFromMainToRenderDataType.ForwardInputEvent;
-  readonly eventType: 'click'; 
+  readonly eventType: 'click' | 'mousedown';
   readonly eventInit: PointerEventInit;
 }
 

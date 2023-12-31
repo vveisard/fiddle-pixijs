@@ -55,6 +55,19 @@ const App: Component = () => {
 
       renderWorker.postMessage(messageData);
     });
+
+    canvas.addEventListener("mousedown", (ev: PointerEvent) => {
+      const eventInit: PointerEventInit =
+        createPointerEventInitFromPointerEvent(ev);
+
+      const messageData: ForwardInputEventMessageFromMainToRenderData = {
+        messageDataType: MessageFromMainToRenderDataType.ForwardInputEvent,
+        eventType: "mousedown",
+        eventInit: eventInit,
+      };
+
+      renderWorker.postMessage(messageData);
+    });
   });
 
   return (
